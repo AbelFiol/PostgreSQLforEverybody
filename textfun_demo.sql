@@ -12,7 +12,7 @@ SELECT 'Neon' || generate_series(1,5);
 
 -- Create a table 'textfun' with a single 'content' column of type TEXT.
 CREATE TABLE textfun (
-  content TEXT
+        content TEXT
 );
 
 -- Insert rows into 'textfun' by concatenating 'Neon' with numbers from 1 to 5.
