@@ -5,7 +5,7 @@ RETURNING *;
 
 -- Update the 'howmuch' value by incrementing it by 1 for the specified post and account, then return the result.
 UPDATE fav SET howmuch = howmuch + 1
-  WHERE post_id = 1 AND account_id = 1
+    WHERE post_id = 1 AND account_id = 1
 RETURNING *;
 
 -- Insert a new row or update 'howmuch' if a conflict occurs on post_id and account_id.
