@@ -28,20 +28,20 @@ SELECT email FROM em WHERE email ~ '[0-9]';
 SELECT email FROM em WHERE email ~ '[0-9][0-9]';
 
 -- Extract the first sequence of digits found in the emails that contain digits.
-SELECT SUBSTRING(email FROM '[0-9]+') FROM em WHERE email ~ '[0-9]';
+SELECT substring(email FROM '[0-9]+') FROM em WHERE email ~ '[0-9]';
 
 -- Extract the domain part of each email.
-SELECT SUBSTRING(email FROM '.+@(.*)$') FROM em;
+SELECT substring(email FROM '.+@(.*)$') FROM em;
 
 -- Extract distinct domain names from the emails.
-SELECT DISTINCT SUBSTRING(email FROM '.+@(.*)$') FROM em;
+SELECT DISTINCT substring(email FROM '.+@(.*)$') FROM em;
 
 -- Count the occurrences of each domain name.
-SELECT SUBSTRING(email FROM '.+@(.*)$'), COUNT(SUBSTRING(email FROM '.+@(.*)$')) 
-FROM em GROUP BY SUBSTRING(email FROM '.+@(.*)$');
+SELECT substring(email FROM '.+@(.*)$'), COUNT(substring(email FROM '.+@(.*)$')) 
+FROM em GROUP BY substring(email FROM '.+@(.*)$');
 
 -- Select all emails where the domain is 'umich.edu'.
-SELECT * FROM em WHERE SUBSTRING(email FROM '.+@(.*)$') = 'umich.edu';
+SELECT * FROM em WHERE substring(email FROM '.+@(.*)$') = 'umich.edu';
 
 -- Create the 'tw' table with an auto-incrementing 'id' and 'tweet' column.
 CREATE TABLE tw (id SERIAL, PRIMARY KEY(id), tweet TEXT);
@@ -58,10 +58,10 @@ SELECT tweet FROM tw;
 SELECT id, tweet FROM tw WHERE tweet ~ '#SQL';
 
 -- Extract all hashtags from the tweets.
-SELECT REGEXP_MATCHES(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
+SELECT regexp_matches(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
 
 -- Extract distinct hashtags from the tweets.
-SELECT DISTINCT REGEXP_MATCHES(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
+SELECT DISTINCT regexp_matches(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
 
 -- Select tweet IDs along with extracted hashtags.
-SELECT id, REGEXP_MATCHES(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
+SELECT id, regexp_matches(tweet, '#([A-Za-z0-9_]+)', 'g') FROM tw;
